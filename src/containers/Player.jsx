@@ -1,7 +1,13 @@
 import React from 'react'
 import '../assets/styles/components/Player.scss'
 
-const Player = () => {
+// to back a before pages, we can use the props.history.goBack()
+
+const Player = (props) => {
+  const { history } = propss
+  //the id comes from the route
+  const { id } = props.match.params
+
   return (
     <div className="Player">
       <video controls autoPlay>
@@ -9,7 +15,9 @@ const Player = () => {
       </video>
 
       <div className="Player-back">
-        <button type="button">Regresar</button>
+        <button type="button" onClick={() => history.goBack()}>
+          Regresar
+        </button>
       </div>
     </div>
   )
