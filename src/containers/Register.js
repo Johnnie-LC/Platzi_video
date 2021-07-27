@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import '../assets/styles/components/Register.scss'
 import { Link } from 'react-router-dom'
+import { registerRequest } from '../actions'
 
-const Register = () => {
+const Register = (props) => {
+  const { registerRequest, history } = props
+
   const [form, setValues] = useState({
     email: '',
     name: '',
@@ -21,8 +25,10 @@ const Register = () => {
     // actualizar el estado para que no funcione lor forms
     e.preventDefault()
     console.log(form)
+    registerRequest(form)
+    history.push('/')
   }
-
+  console.log('props: ', props.history)
   return (
     <section className="register">
       <section className="register__container">
@@ -56,5 +62,8 @@ const Register = () => {
     </section>
   )
 }
+const mapDispatchToProps = {
+  registerRequest,
+}
 
-export default Register
+export default connect(null, mapDispatchToProps)(Register)

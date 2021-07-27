@@ -8,6 +8,7 @@ import { createStore } from 'redux'
 import reducer from './reducers'
 
 const initialState = {
+  users: [],
   user: {},
   playing: {},
   myList: [],
