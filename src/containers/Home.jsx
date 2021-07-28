@@ -7,12 +7,24 @@ import CarouselItem from '../components/CarouselItem'
 import '../assets/styles/App.scss'
 import Header from '../components/Header'
 
-const Home = ({ myList, trends, originals }) => {
-  console.log(myList)
+const Home = ({ myList, trends, originals, searchResult }) => {
+  console.log(' MyList: ', myList)
+  console.log('searchResult: ', searchResult)
   return (
     <>
       <Header />
       <Search isHome />
+
+      {searchResult.length > 0 && (
+        <Categories title="Resultados de la busqueda...">
+          <Carousel>
+            {searchResult.map((item) => (
+              <CarouselItem key={item.id} {...item} />
+            ))}
+          </Carousel>
+        </Categories>
+      )}
+
       {myList.length > 0 && (
         <Categories title="Mi Lista">
           <Carousel>
@@ -40,10 +52,11 @@ const Home = ({ myList, trends, originals }) => {
   )
 }
 
-const mapStateToProps = ({ myList, trends, originals }) => ({
+const mapStateToProps = ({ myList, trends, originals, searchResult }) => ({
   myList,
   trends,
   originals,
+  searchResult,
 })
 
 export default connect(mapStateToProps, null)(Home)
