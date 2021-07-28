@@ -15,21 +15,21 @@ const Home = ({ myList, trends, originals, searchResult }) => {
       <Header />
       <Search isHome />
 
-      {searchResult.length > 0 && (
-        <Categories title="Resultados de la busqueda...">
-          <Carousel>
-            {searchResult.map((item) => (
-              <CarouselItem key={item.id} {...item} />
-            ))}
-          </Carousel>
-        </Categories>
-      )}
-
       {myList.length > 0 && (
         <Categories title="Mi Lista">
           <Carousel>
             {myList.map((item) => (
               <CarouselItem key={item.id} {...item} isList />
+            ))}
+          </Carousel>
+        </Categories>
+      )}
+
+      {searchResult.length > 0 && (
+        <Categories title="Resultados de la busqueda...">
+          <Carousel>
+            {searchResult.map((item) => (
+              <CarouselItem key={item.id} {...item} />
             ))}
           </Carousel>
         </Categories>
