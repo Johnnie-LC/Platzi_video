@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import App from './routes/App'
 // importar react-redux da un provider encapsular los componentes, y por medio de
 // un connect obtener la informacion del estado
-import { Provider } from 'react-redux'
+// to connect with devtools redux we put compose
+import { Provider, compose } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
 
@@ -185,7 +186,10 @@ const initialState = {
   ],
 }
 
-const store = createStore(reducer, initialState)
+// below we have the function to conect redux devtools with my aplication
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(reducer, initialState, composeEnhancers())
 
 ReactDOM.render(
   <Provider store={store}>
